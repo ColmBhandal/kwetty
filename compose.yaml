@@ -1,0 +1,14 @@
+services:
+    k:
+        build: .
+        stdin_open: true
+        tty: true
+        ports: 
+         - "22"
+    wetty:
+        depends_on:
+          - k
+        image: wettyoss/wetty
+        ports:
+          - "3000:3000"
+        command: --ssh-host=k      
